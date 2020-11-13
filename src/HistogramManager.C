@@ -16,9 +16,11 @@ HistogramManager::HistogramManager(std::string FILE){
 
   //TTree
   m_tree = new TTree("physics","physics");
+
   //Event Information
   m_tree->Branch("eventnumber",&eventnumber,"eventnumber/I");
   m_tree->Branch("bcid",&bcid,"bcid/I");
+
   //Offline
   m_tree->Branch("muon_n",&muon_n,"muon_n/I");
   muon_pt=new std::vector<float>; m_tree->Branch("muon_pt",&muon_pt);
@@ -28,6 +30,13 @@ HistogramManager::HistogramManager(std::string FILE){
   muon_charge=new std::vector<int>; m_tree->Branch("muon_charge",&muon_charge);
   muon_author=new std::vector<int>; m_tree->Branch("muon_author",&muon_author);
   muon_Type=new std::vector<int>; m_tree->Branch("muon_Type",&muon_Type);
+
+  //Museg
+  m_tree->Branch("museg_n",&museg_n,"museg_n/I");
+  museg_x=new std::vector<float>; m_tree->Branch("museg_x",&museg_x);
+  museg_y=new std::vector<float>; m_tree->Branch("museg_y",&museg_y);
+  museg_z=new std::vector<float>; m_tree->Branch("museg_y",&museg_y);
+
   //Extrapolate
   m_tree->Branch("ext_mu_n",&ext_mu_n,"ext_mu_n/I");
   ext_mu_type=new std::vector<int>; m_tree->Branch("ext_mu_type",&ext_mu_type);
