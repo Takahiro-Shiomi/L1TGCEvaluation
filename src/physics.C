@@ -46,8 +46,8 @@ void physics::Loop(std::string BWCW_path)
     //////////////////////
     ////  EVENT LOOP
     /////////////////////
-    //for (Long64_t jentry=0; jentry<nentries;jentry++) {
-    for (Long64_t jentry=0; jentry<2000000;jentry++) {
+    for (Long64_t jentry=0; jentry<nentries;jentry++) {
+    //for (Long64_t jentry=0; jentry<2000000;jentry++) {
     //for (Long64_t jentry=2000000; jentry<4000000;jentry++) {
     //for (Long64_t jentry=4000000; jentry<nentries;jentry++) {
         Long64_t ientry = LoadTree(jentry);
@@ -104,8 +104,26 @@ void physics::FillNtuple(HistogramManager &hs, std::vector<RoIObj>& RoIs)
         hs.muon_Type->push_back((*mu_muonType)[i]);
     }
 
+    //Museg
+    hs.museg_n = museg_n;
+    for(int i=0;i!=museg_n;i++){
+        hs.museg_x->push_back((*museg_x)[i]);
+        hs.museg_y->push_back((*museg_y)[i]);
+        hs.museg_z->push_back((*museg_z)[i]);
+        hs.museg_px->push_back((*museg_px)[i]);
+        hs.museg_py->push_back((*museg_py)[i]);
+        hs.museg_pz->push_back((*museg_pz)[i]);
+        hs.museg_t0->push_back((*museg_t0)[i]);
+        hs.museg_t0error->push_back((*museg_t0error)[i]);
+        hs.museg_chi2->push_back((*museg_chi2)[i]);
+        hs.museg_ndof->push_back((*museg_ndof)[i]);
+        hs.museg_sector->push_back((*museg_sector)[i]);
+        hs.museg_stationName->push_back((*museg_stationName)[i]);
+        hs.museg_stationEta->push_back((*museg_stationEta)[i]);
+        hs.museg_author->push_back((*museg_author)[i]);
+    }
+
     //Extrapolate
-    /*
     hs.ext_mu_n = ext_mu_bias_n;
     for(int i=0;i!=ext_mu_bias_n;i++){
         hs.ext_mu_type->push_back((*ext_mu_bias_type)[i]);
@@ -141,7 +159,74 @@ void physics::FillNtuple(HistogramManager &hs, std::vector<RoIObj>& RoIs)
         hs.ext_mu_targetPyVec->push_back(PyVec);
         hs.ext_mu_targetPzVec->push_back(PzVec);
     }
-    */
+
+    //TGCPRD
+    hs.TGC_prd_n = TGC_prd_n;
+    for(int i=0;i!=TGC_prd_n;i++){
+        hs.TGC_prd_x->push_back((*TGC_prd_x)[i]);
+        hs.TGC_prd_y->push_back((*TGC_prd_y)[i]);
+        hs.TGC_prd_z->push_back((*TGC_prd_z)[i]);
+        hs.TGC_prd_shortWidth->push_back((*TGC_prd_shortWidth)[i]);
+        hs.TGC_prd_longWidth->push_back((*TGC_prd_longWidth)[i]);
+        hs.TGC_prd_length->push_back((*TGC_prd_length)[i]);
+        hs.TGC_prd_isStrip->push_back((*TGC_prd_isStrip)[i]);
+        hs.TGC_prd_gasGap->push_back((*TGC_prd_gasGap)[i]);
+        hs.TGC_prd_channel->push_back((*TGC_prd_channel)[i]);
+        hs.TGC_prd_eta->push_back((*TGC_prd_eta)[i]);
+        hs.TGC_prd_phi->push_back((*TGC_prd_phi)[i]);
+        hs.TGC_prd_station->push_back((*TGC_prd_station)[i]);
+        hs.TGC_prd_bunch->push_back((*TGC_prd_bunch)[i]);
+    }
+
+    //RPCPRD
+    hs.RPC_prd_n = RPC_prd_n;
+    for(int i=0;i!=RPC_prd_n;i++){
+        hs.RPC_prd_x->push_back((*RPC_prd_x)[i]);
+        hs.RPC_prd_y->push_back((*RPC_prd_y)[i]);
+        hs.RPC_prd_z->push_back((*RPC_prd_z)[i]);
+        hs.RPC_prd_x2->push_back((*RPC_prd_x2)[i]);
+        hs.RPC_prd_y2->push_back((*RPC_prd_y2)[i]);
+        hs.RPC_prd_z2->push_back((*RPC_prd_z2)[i]);
+        hs.RPC_prd_triggerInfo->push_back((*RPC_prd_triggerInfo)[i]);
+        hs.RPC_prd_ambiguityFlag->push_back((*RPC_prd_ambiguityFlag)[i]);
+        hs.RPC_prd_measuresPhi->push_back((*RPC_prd_measuresPhi)[i]);
+        hs.RPC_prd_inRibs->push_back((*RPC_prd_inRibs)[i]);
+        hs.RPC_prd_station->push_back((*RPC_prd_station)[i]);
+        hs.RPC_prd_stationEta->push_back((*RPC_prd_stationEta)[i]);
+        hs.RPC_prd_stationPhi->push_back((*RPC_prd_stationPhi)[i]);
+        hs.RPC_prd_doubletR->push_back((*RPC_prd_doubletR)[i]);
+        hs.RPC_prd_doubletZ->push_back((*RPC_prd_doubletZ)[i]);
+        hs.RPC_prd_stripWidth->push_back((*RPC_prd_stripWidth)[i]);
+        hs.RPC_prd_stripLength->push_back((*RPC_prd_stripLength)[i]);
+        hs.RPC_prd_gasGap->push_back((*RPC_prd_gasGap)[i]);
+        hs.RPC_prd_channel->push_back((*RPC_prd_channel)[i]);
+    }
+
+    //Tile
+    hs.TILE_murcv_trig_n = TILE_murcv_trig_n;
+    for(int i=0;i!=TILE_murcv_trig_n;i++){
+        hs.TILE_murcv_trig_mod->push_back((*TILE_murcv_trig_mod)[i]);
+        hs.TILE_murcv_trig_part->push_back((*TILE_murcv_trig_part)[i]);
+        hs.TILE_murcv_trig_bit0->push_back((*TILE_murcv_trig_bit0)[i]);
+        hs.TILE_murcv_trig_bit1->push_back((*TILE_murcv_trig_bit1)[i]);
+        hs.TILE_murcv_trig_bit2->push_back((*TILE_murcv_trig_bit2)[i]);
+        hs.TILE_murcv_trig_bit3->push_back((*TILE_murcv_trig_bit3)[i]);
+    }
+    hs.TILE_murcv_raw_n = TILE_murcv_raw_n;
+    for(int i=0;i!=TILE_murcv_raw_n;i++){
+        hs.TILE_murcv_raw_count->push_back((*TILE_murcv_raw_count)[i]);
+        hs.TILE_murcv_raw_energy->push_back((*TILE_murcv_raw_energy)[i]);
+        hs.TILE_murcv_raw_ros->push_back((*TILE_murcv_raw_ros)[i]);
+        hs.TILE_murcv_raw_drawer->push_back((*TILE_murcv_raw_drawer)[i]);
+        hs.TILE_murcv_raw_channel->push_back((*TILE_murcv_raw_channel)[i]);
+    }
+    hs.TILE_murcv_digit_n = TILE_murcv_digit_n;
+    for(int i=0;i!=TILE_murcv_digit_n;i++){
+        hs.TILE_murcv_digit_nSamples->push_back((*TILE_murcv_digit_nSamples)[i]);
+        hs.TILE_murcv_digit_ros->push_back((*TILE_murcv_digit_ros)[i]);
+        hs.TILE_murcv_digit_drawer->push_back((*TILE_murcv_digit_drawer)[i]);
+        hs.TILE_murcv_digit_channel->push_back((*TILE_murcv_digit_channel)[i]);
+    }
 
     //HLT
     hs.HLT_info_n = trigger_info_n;

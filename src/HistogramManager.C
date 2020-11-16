@@ -35,7 +35,18 @@ HistogramManager::HistogramManager(std::string FILE){
   m_tree->Branch("museg_n",&museg_n,"museg_n/I");
   museg_x=new std::vector<float>; m_tree->Branch("museg_x",&museg_x);
   museg_y=new std::vector<float>; m_tree->Branch("museg_y",&museg_y);
-  museg_z=new std::vector<float>; m_tree->Branch("museg_y",&museg_y);
+  museg_z=new std::vector<float>; m_tree->Branch("museg_z",&museg_z);
+  museg_px=new std::vector<float>; m_tree->Branch("museg_px",&museg_px);
+  museg_py=new std::vector<float>; m_tree->Branch("museg_py",&museg_py);
+  museg_pz=new std::vector<float>; m_tree->Branch("museg_pz",&museg_pz);
+  museg_t0=new std::vector<float>; m_tree->Branch("museg_t0",&museg_t0);
+  museg_t0error=new std::vector<float>; m_tree->Branch("museg_t0error",&museg_t0error);
+  museg_chi2=new std::vector<float>; m_tree->Branch("museg_chi2",&museg_chi2);
+  museg_ndof=new std::vector<float>; m_tree->Branch("museg_ndof",&museg_ndof);
+  museg_sector=new std::vector<int>; m_tree->Branch("museg_sector",&museg_sector);
+  museg_stationName=new std::vector<int>; m_tree->Branch("museg_stationName",&museg_stationName);
+  museg_stationEta=new std::vector<int>; m_tree->Branch("museg_stationEta",&museg_stationEta);
+  museg_author=new std::vector<int>; m_tree->Branch("museg_author",&museg_author);
 
   //Extrapolate
   m_tree->Branch("ext_mu_n",&ext_mu_n,"ext_mu_n/I");
@@ -51,6 +62,67 @@ HistogramManager::HistogramManager(std::string FILE){
   ext_mu_targetPxVec=new std::vector<std::vector<float>>; m_tree->Branch("ext_mu_targetPxVec",&ext_mu_targetPxVec);
   ext_mu_targetPyVec=new std::vector<std::vector<float>>; m_tree->Branch("ext_mu_targetPyVec",&ext_mu_targetPyVec);
   ext_mu_targetPzVec=new std::vector<std::vector<float>>; m_tree->Branch("ext_mu_targetPzVec",&ext_mu_targetPzVec);
+
+  //TGCPRD
+  m_tree->Branch("TGC_prd_n",&TGC_prd_n,"TGC_prd_n/I");
+  TGC_prd_x=new std::vector<float>; m_tree->Branch("TGC_prd_x",&TGC_prd_x);
+  TGC_prd_y=new std::vector<float>; m_tree->Branch("TGC_prd_y",&TGC_prd_y);
+  TGC_prd_z=new std::vector<float>; m_tree->Branch("TGC_prd_z",&TGC_prd_z);
+  TGC_prd_shortWidth=new std::vector<float>; m_tree->Branch("TGC_prd_shortWidth",&TGC_prd_shortWidth);
+  TGC_prd_longWidth=new std::vector<float>; m_tree->Branch("TGC_prd_longWidth",&TGC_prd_longWidth);
+  TGC_prd_length=new std::vector<float>; m_tree->Branch("TGC_prd_length",&TGC_prd_length);
+  TGC_prd_isStrip=new std::vector<int>; m_tree->Branch("TGC_prd_isStrip",&TGC_prd_isStrip);
+  TGC_prd_gasGap=new std::vector<int>; m_tree->Branch("TGC_prd_gasGap",&TGC_prd_gasGap);
+  TGC_prd_channel=new std::vector<int>; m_tree->Branch("TGC_prd_channel",&TGC_prd_channel);
+  TGC_prd_eta=new std::vector<int>; m_tree->Branch("TGC_prd_eta",&TGC_prd_eta);
+  TGC_prd_phi=new std::vector<int>; m_tree->Branch("TGC_prd_phi",&TGC_prd_phi);
+  TGC_prd_station=new std::vector<int>; m_tree->Branch("TGC_prd_station",&TGC_prd_station);
+  TGC_prd_bunch=new std::vector<int>; m_tree->Branch("TGC_prd_bunch",&TGC_prd_bunch);
+
+  //RPCRPD
+  m_tree->Branch("RPC_prd_n",&RPC_prd_n,"RPC_prd_n/I");
+  RPC_prd_x=new std::vector<float>; m_tree->Branch("RPC_prd_x",&RPC_prd_x);
+  RPC_prd_y=new std::vector<float>; m_tree->Branch("RPC_prd_y",&RPC_prd_y);
+  RPC_prd_z=new std::vector<float>; m_tree->Branch("RPC_prd_z",&RPC_prd_z);
+  RPC_prd_x2=new std::vector<float>; m_tree->Branch("RPC_prd_x2",&RPC_prd_x2);
+  RPC_prd_y2=new std::vector<float>; m_tree->Branch("RPC_prd_y2",&RPC_prd_y2);
+  RPC_prd_z2=new std::vector<float>; m_tree->Branch("RPC_prd_z2",&RPC_prd_z2);
+  RPC_prd_time=new std::vector<float>; m_tree->Branch("RPC_prd_time",&RPC_prd_time);
+  RPC_prd_triggerInfo=new std::vector<int>; m_tree->Branch("RPC_prd_triggerInfo",&RPC_prd_triggerInfo);
+  RPC_prd_ambiguityFlag=new std::vector<int>; m_tree->Branch("RPC_prd_ambiguityFlag",&RPC_prd_ambiguityFlag);
+  RPC_prd_measuresPhi=new std::vector<int>; m_tree->Branch("RPC_prd_measuresPhi",&RPC_prd_measuresPhi);
+  RPC_prd_inRibs=new std::vector<int>; m_tree->Branch("RPC_prd_inRibs",&RPC_prd_inRibs);
+  RPC_prd_station=new std::vector<int>; m_tree->Branch("RPC_prd_station",&RPC_prd_station);
+  RPC_prd_stationEta=new std::vector<int>; m_tree->Branch("RPC_prd_stationEta",&RPC_prd_stationEta);
+  RPC_prd_stationPhi=new std::vector<int>; m_tree->Branch("RPC_prd_stationPhi",&RPC_prd_stationPhi);
+  RPC_prd_doubletR=new std::vector<int>; m_tree->Branch("RPC_prd_doubletR",&RPC_prd_doubletR);
+  RPC_prd_doubletZ=new std::vector<int>; m_tree->Branch("RPC_prd_doubletZ",&RPC_prd_doubletZ);
+  RPC_prd_stripWidth=new std::vector<double>; m_tree->Branch("RPC_prd_stripWidth",&RPC_prd_stripWidth);
+  RPC_prd_stripLength=new std::vector<double>; m_tree->Branch("RPC_prd_stripLength",&RPC_prd_stripLength);
+  RPC_prd_gasGap=new std::vector<int>; m_tree->Branch("RPC_prd_gasGap",&RPC_prd_gasGap);
+  RPC_prd_channel=new std::vector<int>; m_tree->Branch("RPC_prd_channel",&RPC_prd_channel);
+
+  //Tile
+  m_tree->Branch("TILE_murcv_trig_n",&TILE_murcv_trig_n,"TILE_murcv_trig_n/I");
+  TILE_murcv_trig_mod=new std::vector<int>; m_tree->Branch("TILE_murcv_trig_mod",&TILE_murcv_trig_mod);
+  TILE_murcv_trig_part=new std::vector<int>; m_tree->Branch("TILE_murcv_trig_part",&TILE_murcv_trig_part);
+  TILE_murcv_trig_bit0=new std::vector<bool>; m_tree->Branch("TILE_murcv_trig_bit0",&TILE_murcv_trig_bit0);
+  TILE_murcv_trig_bit1=new std::vector<bool>; m_tree->Branch("TILE_murcv_trig_bit1",&TILE_murcv_trig_bit1);
+  TILE_murcv_trig_bit2=new std::vector<bool>; m_tree->Branch("TILE_murcv_trig_bit2",&TILE_murcv_trig_bit2);
+  TILE_murcv_trig_bit3=new std::vector<bool>; m_tree->Branch("TILE_murcv_trig_bit3",&TILE_murcv_trig_bit3);
+  m_tree->Branch("TILE_murcv_raw_n",&TILE_murcv_raw_n,"TILE_murcv_raw_n/I");
+  TILE_murcv_raw_count=new std::vector<float>; m_tree->Branch("TILE_murcv_raw_count",&TILE_murcv_raw_count);
+  TILE_murcv_raw_energy=new std::vector<float>; m_tree->Branch("TILE_murcv_raw_energy",&TILE_murcv_raw_energy);
+  TILE_murcv_raw_ros=new std::vector<int>; m_tree->Branch("TILE_murcv_raw_ros",&TILE_murcv_raw_ros);
+  TILE_murcv_raw_drawer=new std::vector<int>; m_tree->Branch("TILE_murcv_raw_drawer",&TILE_murcv_raw_drawer);
+  TILE_murcv_raw_channel=new std::vector<int>; m_tree->Branch("TILE_murcv_raw_channel",&TILE_murcv_raw_channel);
+  m_tree->Branch("TILE_murcv_digit_n",&TILE_murcv_digit_n,"TILE_murcv_digit_n/I");
+  TILE_murcv_digit_nSamples=new std::vector<int>; m_tree->Branch("TILE_murcv_digit_nSamples",&TILE_murcv_digit_nSamples);
+  TILE_murcv_digit_ros=new std::vector<int>; m_tree->Branch("TILE_murcv_digit_ros",&TILE_murcv_digit_ros);
+  TILE_murcv_digit_drawer=new std::vector<int>; m_tree->Branch("TILE_murcv_digit_drawer",&TILE_murcv_digit_drawer);
+  TILE_murcv_digit_channel=new std::vector<int>; m_tree->Branch("TILE_murcv_digit_channel",&TILE_murcv_digit_channel);
+  TILE_murcv_digit_sampleVec=new std::vector<std::vector<float>>; m_tree->Branch("TILE_murcv_digit_sampleVec",&TILE_murcv_digit_sampleVec);
+
   //TGC Coin Data
   m_tree->Branch("tgc_coin_n",&tgc_coin_n,"tgc_coin_n/I");
   tgc_coin_x_In=new std::vector<float>; m_tree->Branch("tgc_coin_x_In",&tgc_coin_x_In);
@@ -78,6 +150,7 @@ HistogramManager::HistogramManager(std::string FILE){
   tgc_coin_veto=new std::vector<int>; m_tree->Branch("tgc_coin_veto",&tgc_coin_veto);
   tgc_coin_bunch=new std::vector<int>; m_tree->Branch("tgc_coin_bunch",&tgc_coin_bunch);
   tgc_coin_inner=new std::vector<int>; m_tree->Branch("tgc_coin_inner",&tgc_coin_inner);
+
   //RoI
   m_tree->Branch("muctpi_ndatawords",&muctpi_ndatawords,"muctpi_ndatawords/I");
   muctpi_eta=new std::vector<float>; m_tree->Branch("muctpi_eta",&muctpi_eta);
@@ -91,6 +164,7 @@ HistogramManager::HistogramManager(std::string FILE){
   muctpi_veto=new std::vector<short>; m_tree->Branch("muctpi_veto",&muctpi_veto);
   muctpi_charge=new std::vector<short>; m_tree->Branch("muctpi_charge",&muctpi_charge);
   muctpi_candidateVetoed=new std::vector<short>; m_tree->Branch("muctpi_candidateVetoed",&muctpi_candidateVetoed);
+
   //HLT
   m_tree->Branch("HLT_info_n",&HLT_info_n,"HLT_info_n/I");
   HLT_info_chain=new std::vector<std::string>; m_tree->Branch("HLT_info_chain",&HLT_info_chain);
@@ -99,6 +173,7 @@ HistogramManager::HistogramManager(std::string FILE){
   HLT_info_ptVec=new std::vector<std::vector<float>>; m_tree->Branch("HLT_info_ptVec",&HLT_info_ptVec);
   HLT_info_etaVec=new std::vector<std::vector<float>>; m_tree->Branch("HLT_info_etaVec",&HLT_info_etaVec);
   HLT_info_phiVec=new std::vector<std::vector<float>>; m_tree->Branch("HLT_info_phiVec",&HLT_info_phiVec);
+
   //Truth
   m_tree->Branch("mc_n",&mc_n,"mc_n/I");
   mc_pt=new std::vector<float>; m_tree->Branch("mc_pt",&mc_pt);
@@ -106,6 +181,7 @@ HistogramManager::HistogramManager(std::string FILE){
   mc_phi=new std::vector<float>; m_tree->Branch("mc_phi",&mc_phi);
   mc_m=new std::vector<float>; m_tree->Branch("mc_m",&mc_m);
   mc_charge=new std::vector<int>; m_tree->Branch("mc_charge",&mc_charge);
+
   //Run-3
   m_tree->Branch("TGC_Run3_n",&TGC_Run3_n,"TGC_Run3_n/I");
   TGC_Run3_pt=new std::vector<int>; m_tree->Branch("TGC_Run3_pt",&TGC_Run3_pt);
@@ -137,6 +213,20 @@ void HistogramManager::Clear(){
     muon_author->clear();
     muon_charge->clear();
     muon_Type->clear();
+    museg_x->clear();
+    museg_y->clear();
+    museg_z->clear();
+    museg_px->clear();
+    museg_py->clear();
+    museg_pz->clear();
+    museg_t0->clear();
+    museg_t0error->clear();
+    museg_chi2->clear();
+    museg_ndof->clear();
+    museg_sector->clear();
+    museg_stationName->clear();
+    museg_stationEta->clear();
+    museg_author->clear();
     ext_mu_type->clear();
     ext_mu_index->clear();
     ext_mu_size->clear();
@@ -149,6 +239,39 @@ void HistogramManager::Clear(){
     ext_mu_targetPxVec->clear();
     ext_mu_targetPyVec->clear();
     ext_mu_targetPzVec->clear();
+    TGC_prd_x->clear();
+    TGC_prd_y->clear();
+    TGC_prd_z->clear();
+    TGC_prd_shortWidth->clear();
+    TGC_prd_longWidth->clear();
+    TGC_prd_length->clear();
+    TGC_prd_isStrip->clear();
+    TGC_prd_gasGap->clear();
+    TGC_prd_channel->clear();
+    TGC_prd_eta->clear();
+    TGC_prd_phi->clear();
+    TGC_prd_station->clear();
+    TGC_prd_bunch->clear();
+    RPC_prd_x->clear();
+    RPC_prd_y->clear();
+    RPC_prd_z->clear();
+    RPC_prd_x2->clear();
+    RPC_prd_y2->clear();
+    RPC_prd_z2->clear();
+    RPC_prd_time->clear();
+    RPC_prd_triggerInfo->clear();
+    RPC_prd_ambiguityFlag->clear();
+    RPC_prd_measuresPhi->clear();
+    RPC_prd_inRibs->clear();
+    RPC_prd_station->clear();
+    RPC_prd_stationEta->clear();
+    RPC_prd_stationPhi->clear();
+    RPC_prd_doubletR->clear();
+    RPC_prd_doubletZ->clear();
+    RPC_prd_stripWidth->clear();
+    RPC_prd_stripLength->clear();
+    RPC_prd_gasGap->clear();
+    RPC_prd_channel->clear();
     tgc_coin_x_In->clear();
     tgc_coin_y_In->clear();
     tgc_coin_z_In->clear();
@@ -174,6 +297,22 @@ void HistogramManager::Clear(){
     tgc_coin_veto->clear();
     tgc_coin_bunch->clear();
     tgc_coin_inner->clear();
+    TILE_murcv_trig_mod->clear();
+    TILE_murcv_trig_part->clear();
+    TILE_murcv_trig_bit0->clear();
+    TILE_murcv_trig_bit1->clear();
+    TILE_murcv_trig_bit2->clear();
+    TILE_murcv_trig_bit3->clear();
+    TILE_murcv_raw_count->clear();
+    TILE_murcv_raw_energy->clear();
+    TILE_murcv_raw_ros->clear();
+    TILE_murcv_raw_drawer->clear();
+    TILE_murcv_raw_channel->clear();
+    TILE_murcv_digit_nSamples->clear();
+    TILE_murcv_digit_ros->clear();
+    TILE_murcv_digit_drawer->clear();
+    TILE_murcv_digit_channel->clear();
+    TILE_murcv_digit_sampleVec->clear();
     muctpi_eta->clear();
     muctpi_phi->clear();
     muctpi_source->clear();
@@ -227,6 +366,20 @@ HistogramManager::~HistogramManager(){
     delete muon_charge; muon_charge=0;
     delete muon_author; muon_author=0;
     delete muon_Type; muon_Type=0;
+    delete museg_x; museg_x=0;
+    delete museg_y; museg_y=0;
+    delete museg_z; museg_z=0;
+    delete museg_px; museg_px=0;
+    delete museg_py; museg_py=0;
+    delete museg_pz; museg_pz=0;
+    delete museg_t0; museg_t0=0;
+    delete museg_t0error; museg_t0error=0;
+    delete museg_chi2; museg_chi2=0;
+    delete museg_ndof; museg_ndof=0;
+    delete museg_sector; museg_sector=0;
+    delete museg_stationName; museg_stationName=0;
+    delete museg_stationEta; museg_stationEta=0;
+    delete museg_author; museg_author=0;
     delete ext_mu_type; ext_mu_type=0;
     delete ext_mu_index; ext_mu_index=0;
     delete ext_mu_size; ext_mu_size=0;
@@ -239,6 +392,39 @@ HistogramManager::~HistogramManager(){
     delete ext_mu_targetPxVec; ext_mu_targetPxVec=0;
     delete ext_mu_targetPyVec; ext_mu_targetPyVec=0;
     delete ext_mu_targetPzVec; ext_mu_targetPzVec=0;
+    delete TGC_prd_x; TGC_prd_x=0;
+    delete TGC_prd_y; TGC_prd_y=0;
+    delete TGC_prd_z; TGC_prd_z=0;
+    delete TGC_prd_shortWidth; TGC_prd_shortWidth=0;
+    delete TGC_prd_longWidth; TGC_prd_longWidth=0;
+    delete TGC_prd_length; TGC_prd_length=0;
+    delete TGC_prd_isStrip; TGC_prd_isStrip=0;
+    delete TGC_prd_gasGap; TGC_prd_gasGap=0;
+    delete TGC_prd_channel; TGC_prd_channel=0;
+    delete TGC_prd_eta; TGC_prd_eta=0;
+    delete TGC_prd_phi; TGC_prd_phi=0;
+    delete TGC_prd_station; TGC_prd_station=0;
+    delete TGC_prd_bunch; TGC_prd_bunch=0;
+    delete RPC_prd_x; RPC_prd_x=0;
+    delete RPC_prd_y; RPC_prd_y=0;
+    delete RPC_prd_z; RPC_prd_z=0;
+    delete RPC_prd_x2; RPC_prd_x2=0;
+    delete RPC_prd_y2; RPC_prd_y2=0;
+    delete RPC_prd_z2; RPC_prd_z2=0;
+    delete RPC_prd_time; RPC_prd_time=0;
+    delete RPC_prd_triggerInfo; RPC_prd_triggerInfo=0;
+    delete RPC_prd_ambiguityFlag; RPC_prd_ambiguityFlag=0;
+    delete RPC_prd_measuresPhi; RPC_prd_measuresPhi=0;
+    delete RPC_prd_inRibs; RPC_prd_inRibs=0;
+    delete RPC_prd_station; RPC_prd_station=0;
+    delete RPC_prd_stationEta; RPC_prd_stationEta=0;
+    delete RPC_prd_stationPhi; RPC_prd_stationPhi=0;
+    delete RPC_prd_doubletR; RPC_prd_doubletR=0;
+    delete RPC_prd_doubletZ; RPC_prd_doubletZ=0;
+    delete RPC_prd_stripWidth; RPC_prd_stripWidth=0;
+    delete RPC_prd_stripLength; RPC_prd_stripLength=0;
+    delete RPC_prd_gasGap; RPC_prd_gasGap=0;
+    delete RPC_prd_channel; RPC_prd_channel=0;
     delete tgc_coin_x_In; tgc_coin_x_In=0;
     delete tgc_coin_y_In; tgc_coin_y_In=0;
     delete tgc_coin_z_In; tgc_coin_z_In=0;
@@ -263,6 +449,22 @@ HistogramManager::~HistogramManager(){
     delete tgc_coin_veto; tgc_coin_veto=0;
     delete tgc_coin_bunch; tgc_coin_bunch=0;
     delete tgc_coin_inner; tgc_coin_inner=0;
+    delete TILE_murcv_trig_mod; TILE_murcv_trig_mod=0;
+    delete TILE_murcv_trig_part; TILE_murcv_trig_part=0;
+    delete TILE_murcv_trig_bit0; TILE_murcv_trig_bit0=0;
+    delete TILE_murcv_trig_bit1; TILE_murcv_trig_bit1=0;
+    delete TILE_murcv_trig_bit2; TILE_murcv_trig_bit2=0;
+    delete TILE_murcv_trig_bit3; TILE_murcv_trig_bit3=0;
+    delete TILE_murcv_raw_count; TILE_murcv_raw_count=0;
+    delete TILE_murcv_raw_energy; TILE_murcv_raw_energy=0;
+    delete TILE_murcv_raw_ros; TILE_murcv_raw_ros=0;
+    delete TILE_murcv_raw_drawer; TILE_murcv_raw_drawer=0;
+    delete TILE_murcv_raw_channel; TILE_murcv_raw_channel=0;
+    delete TILE_murcv_digit_nSamples; TILE_murcv_digit_nSamples=0;
+    delete TILE_murcv_digit_ros; TILE_murcv_digit_ros=0;
+    delete TILE_murcv_digit_drawer; TILE_murcv_digit_drawer=0;
+    delete TILE_murcv_digit_channel; TILE_murcv_digit_channel=0;
+    delete TILE_murcv_digit_sampleVec; TILE_murcv_digit_sampleVec=0;
     delete muctpi_eta; muctpi_eta=0;
     delete muctpi_phi; muctpi_phi=0;
     delete muctpi_source; muctpi_source=0;
